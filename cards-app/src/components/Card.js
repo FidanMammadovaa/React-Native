@@ -33,7 +33,7 @@ export default function Card() {
             <View style={isChecked ? styles.checkedtodoContainer : styles.todoContainer}>
                 <View style={styles.categoryContainer}>
                     <Image
-                        source={require('C:/Users/goldw/Documents/VS Code Projects/HW-1 react-native/cards-app/assets/calendar-event-fill.png')}
+                        source={require('../../assets/calendar-event-fill.png')}
                         style={styles.calendarImg}
                     />
                 </View>
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
         width: 344,
         height: 80,
         top: 16,
-        left: 16,
-        padding: 16,
+        // left: 16,
+        // padding: 16,
         borderBottomColor: '#9747FF',
         flexDirection: 'row',
         justifyContent: 'space-between',
