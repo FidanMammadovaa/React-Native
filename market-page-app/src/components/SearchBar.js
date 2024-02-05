@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         borderColor: '#E8E8E8',
         textAlignVertical: 'center',
         backgroundColor: '#F6F6F6',
-        borderRadius: 15,
+        borderRadius: 30,
     },
     searchText:
     {
