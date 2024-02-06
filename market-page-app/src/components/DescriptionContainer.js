@@ -22,15 +22,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     itemContainer: {
-        width: 150
+        width: 200,
+        marginRight: 10
     },
     name: {
         fontSize: 24,
         fontWeight: '500',
     },
     imgStyle: {
-        width: 120,
-        height: 120,
+        width: 200,
+        height: 200,
         borderRadius: 8,
     }
 });
