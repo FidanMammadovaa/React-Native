@@ -38,7 +38,7 @@ export default function TrendingSection() {
 const styles = StyleSheet.create({
     container:
     {
-        paddingTop: 50
+        paddingTop: 50,
     },
     title:
     {

@@ -8,7 +8,7 @@ export default function DescriptionContainer({ descriptions }) {
                 <View key={index} style={styles.itemContainer}>
                     <Image source={{ uri: description.image }} style={styles.imgStyle} />
                     <Text>{description.name}</Text>
-                    <Text>{description.price}</Text>
+                    <Text style={styles.price}>{description.price}</Text>
                 </View>
             ))}
         </ScrollView>
@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 24,
         fontWeight: '500',
+    },
+    price:
+    {
+        fontWeight: '600'
     },
     imgStyle: {
         width: 200,
