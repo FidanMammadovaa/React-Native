@@ -1,11 +1,11 @@
-import {  StyleSheet,  View } from 'react-native';
+import {  SafeAreaView, StyleSheet,  View } from 'react-native';
 import MarketPage from './src/pages/MarketPage';
 
 export default function App() {
   return (
-    <View >
+    <SafeAreaView style={styles.container}>
       <MarketPage />
-    </View>
+    </SafeAreaView>
 
   );
 }
