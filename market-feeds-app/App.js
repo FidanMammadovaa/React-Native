@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import AppNavigator from './src/components/AppNavigator';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
 
@@ -7,7 +8,10 @@ export default function App() {
     // <View >
     //   <MarketPage />
     // </View>
-    <AppNavigator />
+    <SafeAreaView style={styles.container}>
+      <AppNavigator />
+
+    </SafeAreaView>
   );
 }
 
