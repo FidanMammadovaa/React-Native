@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
-import DescriptionContainer from "./DescriptionContainer";
+import DescriptionContainer from "../../containers/DescriptionContainer";
 
 
 export default function PopularSection() {

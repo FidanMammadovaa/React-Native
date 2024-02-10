@@ -1,9 +1,9 @@
 import { ScrollView } from 'react-native';
-import TrendingSection from '../components/TrendingSection';
-import HotDealsSection from '../components/HotDealsSection';
+import TrendingSection from '../components/sections/TrendingSection';
+import HotDealsSection from '../components/sections/HotDealsSection';
 import SearchBar from '../components/SearchBar';
-import PopularSection from '../components/PopularSection';
-import HitsSection from '../components/HitsSection';
+import PopularSection from '../components/sections/PopularSection';
+import HitsSection from '../components/sections/HitsSection';
 export default function MarketPage() {
   return (
     <ScrollView>

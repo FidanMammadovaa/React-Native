@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MarketPage from '../pages/MarketPage';
 import FeedPage from '../pages/FeedPage';
-import Header from './Header';
+import Header from '../components/Header';
 
 const Stack = createStackNavigator();
 

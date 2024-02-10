@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import FeedContainer from '../components/FeedContainer';
+import FeedContainer from '../containers/FeedContainer';
 
 export default function FeedPage() {
   let feedsArray = [

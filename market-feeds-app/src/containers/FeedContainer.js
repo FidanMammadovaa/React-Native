@@ -8,7 +8,7 @@ export default function FeedContainer({ feedsArray }) {
     const FeedItem = ({ feed }) => (
         <View style={styles.feedItem}>
             {feed.image && <Image source={{ uri: feed.image }} style={styles.imgStyle} />}
-            <View style={styles.textContainer}>
+            <View>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleStyle} numberOfLines={2} ellipsizeMode="tail">
                         {feed.title}
@@ -29,7 +29,6 @@ export default function FeedContainer({ feedsArray }) {
                     data={feedsArray}
                     renderItem={({ item }) => <FeedItem feed={item} />}
                     keyExtractor={(item) => item.id}
-                    contentContainerStyle={styles.flatListContainer}
                 />
             </ImageBackground>
 
@@ -58,13 +57,9 @@ const styles = StyleSheet.create({
     imgStyle: {
         width: 200,
         height: 120,
-        marginRight: 10,
     },
     feedItem: {
         marginBottom: 10,
-    },
-    textContainer: {
-        marginLeft: 10,
     },
     titleContainer: {
         flexDirection: 'row',
@@ -85,8 +80,5 @@ const styles = StyleSheet.create({
     publishTime: {
         fontSize: 14,
         color: '#BDBDBD',
-    },
-    flatListContainer: {
-        alignItems: 'center',
     },
 });
