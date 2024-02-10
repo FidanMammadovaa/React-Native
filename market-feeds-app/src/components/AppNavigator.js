@@ -13,7 +13,6 @@ const AppNavigator = () => {
       <Stack.Navigator initialRouteName="Market">
         <Stack.Screen
           name="Market"
-          component={MarketPage}
           options={({ route }) => ({
             header: ({ navigation }) => (
               <Header
@@ -22,10 +21,11 @@ const AppNavigator = () => {
               />
             ),
           })}
-        />
+        >
+          {props => <MarketPage {...props} />}
+        </Stack.Screen>
         <Stack.Screen
           name="Feed"
-          component={FeedPage}
           options={({ route }) => ({
             header: ({ previous, navigation }) => (
               <Header
@@ -35,7 +35,23 @@ const AppNavigator = () => {
               />
             ),
           })}
-        />
+        >
+          {props => <FeedPage {...props} />}
+        </Stack.Screen>
+        {/* <Stack.Screen
+          name="Content"
+          options={({ route }) => ({
+            header: ({ previous, navigation }) => (
+              <Header
+                pageName={route.name}
+                previousPageName={previous}
+                navigation={navigation}
+              />
+            ),
+          })}
+        >
+          {props => <FeedPage {...props} />}
+        </Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
