@@ -1,11 +1,12 @@
-import { TextInput, Text, Pressable, View, StyleSheet } from "react-native"
+import { TextInput, Text, Linking, Pressable, View, StyleSheet } from "react-native"
 import React, { useState } from "react"
 
 export default function LoginPage() {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
 
+    let supportUrl = 'mailto: support@gmail.com'
     const handleEmailChange = (email) => {
         setEmail(email)
     }
@@ -16,6 +17,10 @@ export default function LoginPage() {
 
     const handleShowPassword = () => {
         setShowPassword((prev) => !prev);
+    }
+
+    const handleMailNavPress = () => {
+        Linking.openURL(supportUrl)
     }
 
     return (
@@ -47,9 +52,11 @@ export default function LoginPage() {
                     </Text>
                 </Pressable>
             </View>
-            <View>
-                <Text style={styles.forgotYourPassText}>Forgot your password?</Text>
-            </View>
+            <Pressable onPress={handleMailNavPress}>
+                <View>
+                    <Text style={styles.forgotYourPassText}>Forgot your password?</Text>
+                </View>
+            </Pressable>
         </View>
     );
 }

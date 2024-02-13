@@ -1,4 +1,4 @@
-import { TextInput, Text, View, StyleSheet, Pressable } from "react-native"
+import { TextInput, Text, View, StyleSheet, Pressable, Linking } from "react-native"
 import Checkbox from "expo-checkbox"
 import React, { useState } from "react"
 
@@ -6,8 +6,9 @@ export default function RegistrationPage() {
     let [name, setName] = useState('')
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
 
+    let supportUrl = 'mailto: support@gmail.com'
     const handleNameChange = (name) => {
         setName(name)
     }
@@ -23,6 +24,12 @@ export default function RegistrationPage() {
     const handleShowPassword = () => {
         setShowPassword((prev) => !prev);
     }
+
+    const handleMailNavPress = () =>
+    {
+        Linking.openURL(supportUrl)
+    }
+
 
     return (
         <View style={styles.container}>
@@ -66,7 +73,9 @@ export default function RegistrationPage() {
                 </Pressable>
             </View>
             <View>
-                <Text style={styles.forgotYourPassText}>Forgot your password?</Text>
+                <Pressable onPress={handleMailNavPress}>
+                    <Text style={styles.forgotYourPassText}>Forgot your password?</Text>
+                </Pressable>
             </View>
         </View>
     );
