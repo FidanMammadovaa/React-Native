@@ -4,26 +4,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MarketPage from '../pages/MarketPage';
 import FeedPage from '../pages/FeedPage';
 import Header from '../components/Header';
+import ContentPage from '../pages/ContentPage';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Market">
+      <Stack.Navigator initialRouteName="Content">
         <Stack.Screen
           name="Market"
           options={({ route }) => ({
-            header: ({ navigation }) => (
+            header: ({ previous, navigation }) => (
               <Header
                 pageName={route.name}
+                previousPageName={previous}
                 navigation={navigation}
               />
             ),
           })}
-        >
-          {props => <MarketPage {...props} />}
-        </Stack.Screen>
+          component={MarketPage}
+        />
         <Stack.Screen
           name="Feed"
           options={({ route }) => ({
@@ -35,10 +36,9 @@ const AppNavigator = () => {
               />
             ),
           })}
-        >
-          {props => <FeedPage {...props} />}
-        </Stack.Screen>
-        {/* <Stack.Screen
+          component={FeedPage}
+        />
+        <Stack.Screen
           name="Content"
           options={({ route }) => ({
             header: ({ previous, navigation }) => (
@@ -49,9 +49,8 @@ const AppNavigator = () => {
               />
             ),
           })}
-        >
-          {props => <FeedPage {...props} />}
-        </Stack.Screen> */}
+          component={ContentPage}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

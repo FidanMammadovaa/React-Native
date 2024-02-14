@@ -1,4 +1,3 @@
-import { cloneElement } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
 
