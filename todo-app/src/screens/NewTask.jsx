@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView } from "react-native";
 import { useFonts, Inter_600SemiBold, Inter_400Regular } from '@expo-google-fonts/inter';
 import Header from "../components/Header";
 import CloseIcon from '../icons/CloseIcon'
@@ -22,8 +22,7 @@ export default function NewTask({ route, navigation }) {
         return null;
     }
 
-    const handleSaveButtonPress = () =>
-    {
+    const handleSaveButtonPress = () => {
         console.log('Saved');
     }
 
@@ -34,38 +33,40 @@ export default function NewTask({ route, navigation }) {
     return (
         <Layout>
             <Header onPress={handleClosePress} svgIcon={CloseIcon} route={route} height={96} />
-            <View style={styles.taskTitleSection}>
-                <Text style={styles.boldTextStyle}>Task Title</Text>
-                <TextInput style={styles.taskTitleInput} placeholder="Task Title" />
-            </View>
-            <View style={styles.categorySection}>
-                <Text style={styles.boldTextStyleCenter}>Category</Text>
-                <View style={styles.iconContainer}>
-                    <Circle
-                        svgIcon={TaskIcon} backgroundColor={'#DBECF6'} />
-                    <Circle
-                        svgIcon={EventIcon} backgroundColor={'#E7E2F3'} />
-                    <Circle
-                        svgIcon={GoalIcon} backgroundColor={'#FEF5D3'} />
+            <KeyboardAvoidingView style={styles.secondContainer} behavior="padding">
+                <View style={styles.taskTitleSection}>
+                    <Text style={styles.boldTextStyle}>Task Title</Text>
+                    <TextInput style={styles.taskTitleInput} placeholder="Task Title" />
                 </View>
-            </View>
-            <View style={styles.container}>
-                <View style={styles.dateSection}>
-                    <Text style={styles.boldTextStyle}>Date</Text>
-                    <TextInput style={styles.smallTextInput} placeholder="Date" />
-                    <InputIcon />
+                <View style={styles.categorySection}>
+                    <Text style={styles.boldTextStyleCenter}>Category</Text>
+                    <View style={styles.iconContainer}>
+                        <Circle
+                            svgIcon={TaskIcon} backgroundColor={'#DBECF6'} />
+                        <Circle
+                            svgIcon={EventIcon} backgroundColor={'#E7E2F3'} />
+                        <Circle
+                            svgIcon={GoalIcon} backgroundColor={'#FEF5D3'} />
+                    </View>
                 </View>
-                <View style={styles.timeSection}>
-                    <Text style={styles.boldTextStyle}>Time</Text>
-                    <TextInput style={styles.smallTextInput} placeholder="Time" />
-                    <ClockIcon />
+                <View style={styles.container}>
+                    <View style={styles.dateSection}>
+                        <Text style={styles.boldTextStyle}>Date</Text>
+                        <TextInput style={styles.smallTextInput} placeholder="Date" />
+                        <InputIcon />
+                    </View>
+                    <View style={styles.timeSection}>
+                        <Text style={styles.boldTextStyle}>Time</Text>
+                        <TextInput style={styles.smallTextInput} placeholder="Time" />
+                        <ClockIcon />
+                    </View>
                 </View>
-            </View>
-            <View style={styles.notesSection}>
-                <Text style={styles.boldTextStyle}>Notes</Text>
-                <TextInput style={styles.bigTextInput} placeholder="Input" />
-            </View>
-            <CustomButton buttonText={'Save'} onPress={handleSaveButtonPress}/>
+                <View style={styles.notesSection}>
+                    <Text style={styles.boldTextStyle}>Notes</Text>
+                    <TextInput style={styles.bigTextInput} placeholder="Input" />
+                </View>
+                <CustomButton buttonText={'Save'} onPress={handleSaveButtonPress} />
+            </KeyboardAvoidingView>
         </Layout>
     )
 }
@@ -73,11 +74,14 @@ export default function NewTask({ route, navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: 476,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
+    },
+    secondContainer: {
+        flex: 1,
+        top: -55,
+        justifyContent: 'center',
+        marginBottom: 20,
     },
     dateSection: {
         flex: 1,
@@ -106,8 +110,7 @@ const styles = StyleSheet.create({
     },
     notesSection:
     {
-        flex: 1,
-        
+
     },
     boldTextStyle:
     {

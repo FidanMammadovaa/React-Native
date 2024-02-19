@@ -4,8 +4,7 @@ import { useFonts, Inter_700Bold } from '@expo-google-fonts/inter';
 
 
 
-export default function CustomButton({onPress, buttonText})
-{
+export default function CustomButton({ onPress, buttonText }) {
     let [fontsLoaded] = useFonts({
         Inter_700Bold
     });
@@ -15,11 +14,9 @@ export default function CustomButton({onPress, buttonText})
     }
 
     return (
-        <View>
-            <Pressable onPress={onPress} style={styles.buttonStyle}>
-                <Text style={styles.textStyle}>{buttonText}</Text>
-            </Pressable>
-        </View>
+        <Pressable onPress={onPress} style={styles.buttonStyle}>
+            <Text style={styles.textStyle}>{buttonText}</Text>
+        </Pressable>
     )
 }
 
@@ -27,14 +24,14 @@ export default function CustomButton({onPress, buttonText})
 const styles = StyleSheet.create({
     buttonStyle:
     {
-        marginTop: 30,
+        marginTop: 20,
         width: 356,
-        marginBottom: 30,
+        marginBottom: 10,
         height: 56,
         borderRadius: 50,
         backgroundColor: '#4A3780',
-        justifyContent: 'center',  
-        alignItems: 'center',      
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
     textStyle:
