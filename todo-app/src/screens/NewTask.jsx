@@ -10,33 +10,56 @@ import InputIcon from '../icons/InputIcon'
 import ClockIcon from '../icons/ClockIcon'
 import Circle from "../components/Circle";
 import CustomButton from "../components/CustomButton";
+import { useState } from "react";
 
-export default function NewTask({ route, navigation }) {
+export default function NewTask({ route, navigation, handleAddTask }) {
+
+    const { todos } = route.params
 
     let [fontsLoaded] = useFonts({
         Inter_600SemiBold,
         Inter_400Regular
     });
+    let [title, setTitle] = useState('')
+    let [time, setTime] = useState('')
+    let [date, setDate] = useState('')
 
     if (!fontsLoaded) {
         return null;
     }
-
-    const handleSaveButtonPress = () => {
-        console.log('Saved');
-    }
-
     const handleClosePress = () => {
+        console.log('pressed');
         navigation.navigate('My Todo List')
     }
 
+    const handleSaveButtonPress = () => {
+        const newTask = {
+            id: todos.length + 1,
+            completed: false,
+            icon: 'TaskIcon',
+            backgroundColor: '#DBECF6',
+            taskTitle: title,
+            time: time,
+            date: date,
+        };
+
+        handleAddTask(newTask)
+
+    }
+
+
+
     return (
         <Layout>
-            <Header onPress={handleClosePress} svgIcon={CloseIcon} route={route} height={96} />
+            <Header onPress={() => handleClosePress()} svgIcon={CloseIcon} route={route} height={96} />
             <KeyboardAvoidingView style={styles.secondContainer} behavior="padding">
                 <View style={styles.taskTitleSection}>
                     <Text style={styles.boldTextStyle}>Task Title</Text>
-                    <TextInput style={styles.taskTitleInput} placeholder="Task Title" />
+                    <TextInput
+                        style={styles.taskTitleInput}
+                        placeholder="Task Title"
+                        value={title}
+                        onChangeText={setTitle} />
                 </View>
                 <View style={styles.categorySection}>
                     <Text style={styles.boldTextStyleCenter}>Category</Text>
@@ -52,18 +75,28 @@ export default function NewTask({ route, navigation }) {
                 <View style={styles.container}>
                     <View style={styles.dateSection}>
                         <Text style={styles.boldTextStyle}>Date</Text>
-                        <TextInput style={styles.smallTextInput} placeholder="Date" />
+                        <TextInput
+                            style={styles.smallTextInput}
+                            placeholder="Date" 
+                            value={date}
+                            onChangeText={setDate}/>
                         <InputIcon />
                     </View>
                     <View style={styles.timeSection}>
                         <Text style={styles.boldTextStyle}>Time</Text>
-                        <TextInput style={styles.smallTextInput} placeholder="Time" />
+                        <TextInput
+                            style={styles.smallTextInput}
+                            placeholder="Time" 
+                            value={time}
+                            onChangeText={setTime}/>
                         <ClockIcon />
                     </View>
                 </View>
                 <View style={styles.notesSection}>
                     <Text style={styles.boldTextStyle}>Notes</Text>
-                    <TextInput style={styles.bigTextInput} placeholder="Input" />
+                    <TextInput
+                        style={styles.bigTextInput}
+                        placeholder="Input" />
                 </View>
                 <CustomButton buttonText={'Save'} onPress={handleSaveButtonPress} />
             </KeyboardAvoidingView>

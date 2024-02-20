@@ -1,16 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import ToDoList from "../screens/ToDoList"
 import NewTask from "../screens/NewTask"
-import EventIcon from '../icons/EventIcon'
-import TaskIcon from '../icons/TaskIcon'
-import GoalIcon from '../icons/GoalIcon'
 import HomeScreen from "../screens/HomeScreen"
+import { useState } from "react"
 const Stack = createNativeStackNavigator()
 
 
 export default function RootNavigation() {
 
-    let todos = [
+    const [todos, setTodos] = useState([
         {
             id: 1,
             completed: false,
@@ -51,7 +49,11 @@ export default function RootNavigation() {
             backgroundColor: '#DBECF6',
             time: '10:00pm'
         },
-    ]
+    ])
+
+    const handleAddTask = (task) => {
+        setTodos((prev) => [...prev, task])
+    }
     return (
         <Stack.Navigator initialRouteName="My Todo List">
             <Stack.Screen
@@ -62,8 +64,9 @@ export default function RootNavigation() {
             <Stack.Screen
                 options={{ headerShown: false }}
                 name="Add New Task"
-                component={NewTask}
-                initialParams={{ contentText: 'Add New Task', titleShown: false }} />
+                initialParams={{ contentText: 'Add New Task', titleShown: false, todos: todos }}>
+                    {props => <NewTask {...props} handleAddTask={handleAddTask}/>}
+            </Stack.Screen>
             <Stack.Screen
                 options={{ headerShown: false }}
                 name="Home Screen"

@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     firstContainer: {
         top: -70,
         width: 358,
-        height: 242,
         backgroundColor: '#FFFFFF',
         borderRadius: 16,
     },
