@@ -22,7 +22,7 @@ export default function ToDoList({ route, navigation }) {
     return (
         <Layout>
 
-            <Header onPress={handleGoBackPress} svgIcon={ArrowLeftIcon} route={route} height={222} />
+            <Header onPress={handleGoBackPress} svgIcon={'ArrowLeftIcon'} route={route} height={222} />
             <ListItems todos={todos} />
             <CustomButton onPress={handleSaveButtonPress} buttonText={'Add New Task'} />
         </Layout>

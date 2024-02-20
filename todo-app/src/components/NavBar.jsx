@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import Circle from "./Circle";
 

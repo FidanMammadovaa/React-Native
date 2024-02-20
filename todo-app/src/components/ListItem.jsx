@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useFonts, Inter_600SemiBold, Inter_500Medium } from '@expo-google-fonts/inter';
-import TaskIcon from "../icons/TaskIcon";
-import EventIcon from "../icons/EventIcon";
-import GoalIcon from "../icons/GoalIcon";
 import Circle from "./Circle";
 
 export default function ListItem({ todo }) {
@@ -38,18 +35,7 @@ export default function ListItem({ todo }) {
         );
     };
 
-    const renderIcon = (icon, styles) => {
-        switch (icon) {
-            case 'EventIcon':
-                return <EventIcon {...styles} />;
-            case 'GoalIcon':
-                return <GoalIcon {...styles} />;
-            case 'TaskIcon':
-                return <TaskIcon {...styles} />;
-            default:
-                return null;
-        }
-    };
+
 
     return (
         <View>
@@ -60,7 +46,7 @@ export default function ListItem({ todo }) {
                             <View style={styles.categoryContainer}>
                                 <Circle
                                     key={todo.id}
-                                    svgIcon={renderIcon(todo.icon)}
+                                    svgIcon={todo.icon}
                                     backgroundColor={todo.backgroundColor}
                                     opacity={0.5}
                                 />
@@ -80,7 +66,7 @@ export default function ListItem({ todo }) {
                             <View style={styles.categoryContainer}>
                                 <Circle
                                     key={todo.id}
-                                    svgIcon={renderIcon(todo.icon)}
+                                    svgIcon={todo.icon}
                                     backgroundColor={todo.backgroundColor} />
                             </View>
                             <View style={styles.textContainer}>

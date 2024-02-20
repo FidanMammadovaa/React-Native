@@ -1,11 +1,7 @@
-import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Pressable, View, Text, TextInput, KeyboardAvoidingView } from "react-native";
 import { useFonts, Inter_600SemiBold, Inter_400Regular } from '@expo-google-fonts/inter';
 import Header from "../components/Header";
-import CloseIcon from '../icons/CloseIcon'
 import Layout from '../components/Layout'
-import TaskIcon from '../icons/TaskIcon'
-import EventIcon from '../icons/EventIcon'
-import GoalIcon from '../icons/GoalIcon'
 import InputIcon from '../icons/InputIcon'
 import ClockIcon from '../icons/ClockIcon'
 import Circle from "../components/Circle";
@@ -23,6 +19,13 @@ export default function NewTask({ route, navigation, handleAddTask }) {
     let [title, setTitle] = useState('')
     let [time, setTime] = useState('')
     let [date, setDate] = useState('')
+    let [selectedCategory, setSelectedCategory] = useState('TaskIcon')
+    let [backgroundColor, setBackgroundColor] = useState('#DBECF6')
+
+    const handleCategorySelect = (categoryIcon, backgroundColor) => {
+        setSelectedCategory(categoryIcon);
+        setBackgroundColor(backgroundColor)
+    };
 
     if (!fontsLoaded) {
         return null;
@@ -36,22 +39,19 @@ export default function NewTask({ route, navigation, handleAddTask }) {
         const newTask = {
             id: todos.length + 1,
             completed: false,
-            icon: 'TaskIcon',
-            backgroundColor: '#DBECF6',
+            icon: selectedCategory,
+            backgroundColor: backgroundColor,
             taskTitle: title,
             time: time,
             date: date,
         };
 
         handleAddTask(newTask)
-
     }
-
-
 
     return (
         <Layout>
-            <Header onPress={() => handleClosePress()} svgIcon={CloseIcon} route={route} height={96} />
+            <Header onPress={() => handleClosePress()} svgIcon={'CloseIcon'} route={route} height={96} />
             <KeyboardAvoidingView style={styles.secondContainer} behavior="padding">
                 <View style={styles.taskTitleSection}>
                     <Text style={styles.boldTextStyle}>Task Title</Text>
@@ -64,12 +64,9 @@ export default function NewTask({ route, navigation, handleAddTask }) {
                 <View style={styles.categorySection}>
                     <Text style={styles.boldTextStyleCenter}>Category</Text>
                     <View style={styles.iconContainer}>
-                        <Circle
-                            svgIcon={TaskIcon} backgroundColor={'#DBECF6'} />
-                        <Circle
-                            svgIcon={EventIcon} backgroundColor={'#E7E2F3'} />
-                        <Circle
-                            svgIcon={GoalIcon} backgroundColor={'#FEF5D3'} />
+                        <Circle onPress={() => handleCategorySelect('TaskIcon', '#DBECF6')} svgIcon={'TaskIcon'} backgroundColor={'#DBECF6'} />
+                        <Circle onPress={() => handleCategorySelect('EventIcon', '#E7E2F3')} svgIcon={'EventIcon'} backgroundColor={'#E7E2F3'} />
+                        <Circle onPress={() => handleCategorySelect('GoalIcon', '#FEF5D3')} svgIcon={'GoalIcon'} backgroundColor={'#FEF5D3'} />
                     </View>
                 </View>
                 <View style={styles.container}>
@@ -77,18 +74,18 @@ export default function NewTask({ route, navigation, handleAddTask }) {
                         <Text style={styles.boldTextStyle}>Date</Text>
                         <TextInput
                             style={styles.smallTextInput}
-                            placeholder="Date" 
+                            placeholder="Date"
                             value={date}
-                            onChangeText={setDate}/>
+                            onChangeText={setDate} />
                         <InputIcon />
                     </View>
                     <View style={styles.timeSection}>
                         <Text style={styles.boldTextStyle}>Time</Text>
                         <TextInput
                             style={styles.smallTextInput}
-                            placeholder="Time" 
+                            placeholder="Time"
                             value={time}
-                            onChangeText={setTime}/>
+                            onChangeText={setTime} />
                         <ClockIcon />
                     </View>
                 </View>
