@@ -45,15 +45,15 @@ export default function RootNavigation() {
             id: 5,
             icon: 'TaskIcon',
             completed: true,
-            taskTitle: 'Take out tash',
+            taskTitle: 'Take out trash',
             backgroundColor: '#DBECF6',
             time: '10:00pm'
         },
     ])
 
     const handleAddTask = (task) => {
-        setTodos((prev) => [...prev, task])
-    }
+        setTodos((prev) => [...prev, task]);
+    };
     return (
         <Stack.Navigator initialRouteName="My Todo List">
             <Stack.Screen

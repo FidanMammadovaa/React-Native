@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         flex: 1,
         top: -55,
         justifyContent: 'center',
-        marginBottom: 20,
+        marginTop: 30,
     },
     dateSection: {
         flex: 1,
