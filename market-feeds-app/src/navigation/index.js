@@ -1,16 +1,15 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MarketPage from '../pages/MarketPage';
-import FeedPage from '../pages/FeedPage';
+import MarketPage from '../screens/MarketScreen';
+import FeedPage from '../screens/FeedScreen';
 import Header from '../components/Header';
-import ContentPage from '../pages/ContentPage';
+import ContentPage from '../screens/ContentScreen';
 
 const Stack = createStackNavigator();
 
-const AppNavigator = () => {
+export default RootNavigation = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator initialRouteName="Content">
         <Stack.Screen
           name="Market"
@@ -52,8 +51,6 @@ const AppNavigator = () => {
           component={ContentPage}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
-export default AppNavigator;

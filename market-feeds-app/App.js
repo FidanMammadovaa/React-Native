@@ -1,13 +1,17 @@
 import { StyleSheet } from 'react-native';
-import AppNavigator from './src/navigation/AppNavigator';
+import RootNavigation from './src/navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import BottomTabNavigation from './src/navigation/BottomTabNavigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppNavigator />
-
+      <NavigationContainer>
+        {/* <RootNavigation /> */}
+        <BottomTabNavigation />
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
