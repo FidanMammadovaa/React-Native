@@ -29,10 +29,10 @@ export default function ContentPage() {
     ]
 
     return (
-        <ScrollView>
+        <View>
             <SearchBar />
             <ContentContainer contentArray={contentArray} />
-        </ScrollView>
+        </View>
 
     );
 }

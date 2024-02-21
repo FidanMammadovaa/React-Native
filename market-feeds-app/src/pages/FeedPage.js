@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import FeedContainer from '../containers/FeedContainer';
 
@@ -35,11 +35,10 @@ export default function FeedPage() {
   ];
 
   return (
-    <ScrollView>
+    <View style={styles.container}>
       <SearchBar />
       <FeedContainer feedsArray={feedsArray} />
-    </ScrollView>
-
+    </View>
   );
 }
 
@@ -47,6 +46,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex',
   },
 });

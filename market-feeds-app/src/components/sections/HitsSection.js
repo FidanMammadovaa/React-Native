@@ -36,7 +36,7 @@ export default function HitsSection() {
     ];
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Popular</Text>
+            <Text style={styles.title}>Hits</Text>
             <DescriptionContainer descriptions={descriptionArray}/>
         </View>
     )
