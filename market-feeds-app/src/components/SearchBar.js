@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         verticalAlign: 'center',
         backgroundColor: '#F6F6F6',
         borderRadius: 30,
+        marginVertical: 10
     },
     searchText:
     {

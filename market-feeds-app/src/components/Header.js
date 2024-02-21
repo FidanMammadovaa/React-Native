@@ -8,14 +8,12 @@ export default function Header({ pageName, navigation }) {
         navigation.navigate(pageName)
     }
     return (
-        <View >
-            <View style={styles.header}>
-                <Pressable onPress={() => handleNavigation(pageName === 'Market' ? 'Feed' : 'Market')}>
-                    <Text style={styles.smallTextGreen}>Go to {pageName === 'Market' ? 'Feed' : 'Market'}</Text>
-                </Pressable>
-                <Text style={styles.boldTextMarket}>{pageName}</Text>
-                <Text style={styles.smallTextGreen}>Filter</Text>
-            </View>
+        <View style={styles.header}>
+            <Pressable onPress={() => handleNavigation(pageName === 'Market' ? 'Feed' : 'Market')}>
+                <Text style={styles.smallTextGreen}>Go to {pageName === 'Market' ? 'Feed' : 'Market'}</Text>
+            </Pressable>
+            <Text style={styles.boldTextMarket}>{pageName}</Text>
+            <Text style={styles.smallTextGreen}>Filter</Text>
         </View>
     )
 }
