@@ -1,5 +1,4 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
@@ -12,7 +11,7 @@ const CustomHeader = ({ route, navigation }) => {
   return <Header pageName={route.name} navigation={navigation} />;
 };
 
-export const AppNavigator = () => {
+export default function RootNavigation(){
 
   return (
       <Stack.Navigator initialRouteName='Log In'>
