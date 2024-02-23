@@ -15,7 +15,6 @@ const CustomHeader = ({ route, navigation }) => {
 export const AppNavigator = () => {
 
   return (
-    <NavigationContainer >
       <Stack.Navigator initialRouteName='Log In'>
         <Stack.Screen
           name="Log In"
@@ -38,7 +37,6 @@ export const AppNavigator = () => {
           component={HomePage}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
