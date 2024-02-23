@@ -1,56 +1,21 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MarketPage from '../screens/MarketScreen';
-import FeedPage from '../screens/FeedScreen';
-import Header from '../components/Header';
-import ContentPage from '../screens/ContentScreen';
+import BottomTabNavigation from './BottomTabNavigation';
+import HomeNavigation from './HomeNavigation';
 
 const Stack = createStackNavigator();
 
-export default RootNavigation = () => {
-  return (
-      <Stack.Navigator initialRouteName="Content">
-        <Stack.Screen
-          name="Market"
-          options={({ route }) => ({
-            header: ({ previous, navigation }) => (
-              <Header
-                pageName={route.name}
-                previousPageName={previous}
-                navigation={navigation}
-              />
-            ),
-          })}
-          component={MarketPage}
-        />
-        <Stack.Screen
-          name="Feed"
-          options={({ route }) => ({
-            header: ({ previous, navigation }) => (
-              <Header
-                pageName={route.name}
-                previousPageName={previous}
-                navigation={navigation}
-              />
-            ),
-          })}
-          component={FeedPage}
-        />
-        <Stack.Screen
-          name="Content"
-          options={({ route }) => ({
-            header: ({ previous, navigation }) => (
-              <Header
-                pageName={route.name}
-                previousPageName={previous}
-                navigation={navigation}
-              />
-            ),
-          })}
-          component={ContentPage}
-        />
-      </Stack.Navigator>
-  );
-};
-
+export default function RootNavigation() {
+    return (
+        <Stack.Navigator initialRouteName="Content">
+            <Stack.Screen
+                name="BottomTabNav"
+                options={{ headerShown: false }}
+                component={BottomTabNavigation}/>
+            <Stack.Screen
+                name="Home"
+                options={{ headerShown: false }}
+                component={HomeNavigation}/>
+        </Stack.Navigator>
+    );
+}

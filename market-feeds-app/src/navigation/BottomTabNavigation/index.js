@@ -8,11 +8,10 @@ import ContentIcon from "../../icons/ContentIcon";
 import FeedIcon from "../../icons/FeedIcon";
 const Tab = createBottomTabNavigator()
 
-const BottomTabNavigation = () => {
+export default function BottomTabNavigation () {
     return (
         <Tab.Navigator >
             <Tab.Screen
-    
                 options={({ route }) => ({
                     header: ({ previous, navigation }) => (
                         <Header
@@ -23,7 +22,7 @@ const BottomTabNavigation = () => {
                     ),
                     tabBarIcon: MarketIcon
                 })}
-                name="Market" 
+                name="Market"
                 component={MarketPage} />
             <Tab.Screen options={({ route }) => ({
                 header: ({ previous, navigation }) => (
@@ -48,5 +47,3 @@ const BottomTabNavigation = () => {
         </Tab.Navigator>
     )
 }
-
-export default BottomTabNavigation;

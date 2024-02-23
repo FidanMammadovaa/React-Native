@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground, FlatList } from 'react-native';
 
 export default function FeedContainer({ feedsArray }) {
-  let backgroundImageUrl = { uri: 'https://c4.wallpaperflare.com/wallpaper/628/16/842/firewatch-video-games-hd-wallpaper-preview.jpg' }
+  let backgroundImageUrl = { uri: 'https://img.freepik.com/free-vector/abstract-technological-background_23-2148897676.jpg' }
   let containerImageUrl = { uri: 'https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1695140956' }
 
   const FeedItem = ({ feed }) => (
