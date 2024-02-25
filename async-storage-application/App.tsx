@@ -5,13 +5,13 @@ import RootNavigation from './src/navigation';
 import AuthProvider from './src/context/AuthContext';
 export default function App() {
   return (
-    // <SafeAreaView style={styles.container}>
-    <AuthProvider>
-      <NavigationContainer>
-        <RootNavigation />
-      </NavigationContainer>
-    </AuthProvider>
-    //  </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <AuthProvider>
+        <NavigationContainer>
+          <RootNavigation />
+        </NavigationContainer>
+      </AuthProvider>
+     </SafeAreaView>
   );
 }
 
