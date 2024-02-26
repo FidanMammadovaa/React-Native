@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { getToken, removeToken, setToken } from "../storageData";
 import { Alert } from "react-native";
 
@@ -24,6 +24,10 @@ export const AuthContext = createContext<AuthContextType>({
     signOut: async () => { },
 });
 
+export const useAuth = () => {
+    return useContext(AuthContext)
+}
+
 interface AuthProviderProps {
     children: React.ReactNode;
 }
@@ -36,26 +40,26 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         const existingUserByEmail = users.find((u) => u.email === user.email);
 
         if (existingUserByEmail) {
-          Alert.alert('Error', 'User already exists')
-          return
+            Alert.alert('Error', 'User already exists')
+            return
         }
 
         setUsers((prev) => [...prev, user]);
         await setToken()
         let token = await getToken()
         if (token) {
-            
+
             setUserToken(token);
         }
-        
+
     };
 
     const signIn = async (user: { email: string; password: string }) => {
-        
+
         const existingUser = users.find(
             (u) => u.email === user.email && u.password === user.password
         );
-        
+
 
         if (existingUser) {
             await setToken()

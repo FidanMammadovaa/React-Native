@@ -1,15 +1,16 @@
 import { TextInput, Text, View, StyleSheet, Pressable, Linking } from "react-native"
 import Checkbox from "expo-checkbox"
-import React, { useContext, useState } from "react"
+import React, {  useState } from "react"
 import { checkEmailValidation, checkNameValidation, checkPasswordValidation } from "../validation"
-import { AuthContext } from "../context/AuthContext"
+import {useAuth } from "../context/AuthContext"
 import { CustomButton } from "../components/Unknown/CustomButton"
 import { CustomTextInput } from "../components/Unknown/CustomTextInput"
 import { BaseText } from "../components/Unknown/DesignSystem"
 
 export default function RegistrationScreen() {
 
-    const authContext = useContext(AuthContext)
+    const authContext = useAuth()
+
 
     let [name, setName] = useState('')
     let [email, setEmail] = useState('')
@@ -20,14 +21,6 @@ export default function RegistrationScreen() {
     const [showPassword, setShowPassword] = useState(true);
 
     let supportUrl = 'mailto: support@gmail.com'
-    const handleNameChange = (name: string) => {
-        setName(name)
-    }
-
-    const handleEmailChange = (email: string) => {
-        setEmail(email)
-    }
-
     const handlePasswordChange = (password: string) => {
         setPassword(password)
     }

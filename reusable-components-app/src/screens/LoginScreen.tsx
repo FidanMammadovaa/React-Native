@@ -1,15 +1,14 @@
 import { TextInput, Text, Linking, Pressable, View, StyleSheet } from "react-native"
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import { checkIsEmpty } from "../validation";
-import { AuthContext } from "../context/AuthContext";
+import {  useAuth } from "../context/AuthContext";
 import { CustomButton } from "../components/Unknown/CustomButton";
 import { CustomTextInput } from "../components/Unknown/CustomTextInput";
 import { BaseText } from "../components/Unknown/DesignSystem";
 
 export default function LoginScreen({ navigation }) {
-    const authContext = useContext(AuthContext)
-
-    console.log(authContext.users);
+    const authContext = useAuth()
+    
 
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
@@ -19,9 +18,6 @@ export default function LoginScreen({ navigation }) {
     let [passwordError, setPasswordError] = useState('')
 
     let supportUrl = 'mailto: support@gmail.com'
-    const handleEmailChange = (email: string) => {
-        setEmail(email)
-    }
 
     const clearFields = () => {
         setEmail('')
