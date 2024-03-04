@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Layout from "../components/Layouts/Layout";
-import BackDrop from "../components/Unknown/BackDrop";
+import BackDrop from "../containers/BackDrop";
 import { BaseText } from "../components/Unknown/DesignSystem";
 import CustomTextInput from "../components/Unknown/CustomTextInput";
 import CustomButton from "../components/Unknown/CustomButton";
@@ -27,18 +27,24 @@ export default function SignUp({ route, navigation }: SignUpProps) {
     const [showRepeatPassword, setShowRepeatPassword] = useState(true)
 
 
-    const clearErrors = () => {
+    const clearFields = () => {
         setEmail('')
         setPassword('')
         setRepeatPassword('')
     }
+    const clearErrors = () => {
+        setEmailError('')
+        setPasswordError('')
+        setRepeatPassword('')
+    }
 
     const handleSignUp = async () => {
-
-        clearErrors();
+        clearErrors()
+        clearFields()
 
         let emailValidationResult = checkEmailValidation(email);
         let passwordValidationResult = checkPasswordValidation(password);
+        let repeatPasswordValidationResult = checkPasswordValidation(repeatPassword)
 
         if (checkPasswordsMatch(password, repeatPassword)) {
             if (emailValidationResult && passwordValidationResult) {
@@ -46,21 +52,30 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                     email: email,
                     password: password
                 }
-                await authContext.signUp(user);
+                await authContext.fetchSignUpUser(user)
                 return;
             }
+            else {
+
+                if (!emailValidationResult) {
+                    setEmailError('Invalid email format');
+                }
+
+                if (!passwordValidationResult) {
+                    setPasswordError("Length shouldn't be less than 8 symbols");
+                }
+
+                if (!repeatPasswordValidationResult) {
+                    setRepeatPasswordError("Length shouldn't be less than 8 symbols");
+                }
+            }
+        }
+        else {
+            setPasswordError('Passwords must match');
+            setRepeatPasswordError('Passwords must match');
         }
 
-        if (!emailValidationResult) {
-            setEmailError('Invalid email format');
-        }
 
-        if (!passwordValidationResult) {
-            setPasswordError("Length shouldn't be less than 8 symbols");
-        }
-
-        setPasswordError('Passwords must match');
-        setRepeatPasswordError('Passwords must match');
     }
 
     const handleShowPassword = () => {

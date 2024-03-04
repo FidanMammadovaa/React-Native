@@ -1,40 +1,27 @@
 import * as React from "react"
-import * as Svg from 'react-native-svg';
-
+import Svg, { G, Path } from "react-native-svg"
 
 interface ShoppingCartIconProps {
   focused?: boolean,
-  color?: string, 
+  fill?: string,
   size?: number,
   width?: number;
   height?: number;
 }
 
-const ShoppingCartIcon = ({ width, height }: ShoppingCartIconProps) => {
+const ShoppingCartIcon = ({ width, height, fill }: ShoppingCartIconProps) => {
   return (
-
-    <Svg.Svg
-      // xmlns="http://www.w3.org/2000/svg"
-      width={width ? width: 24}
-      height={height? height: 24}
-      fill="none"
+    <Svg
+      width={width ? width : 24}
+      height={height ? height : 24}
+      viewBox="0 0 483.1 483.1"
     >
-      <Svg.Defs>
-        <Svg.ClipPath id="a">
-          <Svg.Path fill="#fff" fillOpacity={0} d="M0 0h24v24H0z" />
-        </Svg.ClipPath>
-      </Svg.Defs>
-      <Svg.Path fill="none" d="M0 0h24v24H0z" />
-      <Svg.G
-        stroke="#9586A8"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        clipPath="url(#a)"
-      >
-        <Svg.Path d="M22.286 5 20.57 15.286H6.857L5.143 5h17.143ZM8.571 21a1.143 1.143 0 1 1 0-2.286 1.143 1.143 0 0 1 0 2.286ZM18.857 21a1.143 1.143 0 1 1 0-2.286 1.143 1.143 0 0 1 0 2.286Z" />
-        <Svg.Path strokeLinecap="round" d="M5.143 5H1.714" />
-      </Svg.G>
-    </Svg.Svg>
+
+      <Path
+        fill={fill ? fill : "#9586A8"}
+        d="m434.55 418.7-27.8-313.3c-.5-6.2-5.7-10.9-12-10.9h-58.6c-.1-52.1-42.5-94.5-94.6-94.5s-94.5 42.4-94.6 94.5h-58.6c-6.2 0-11.4 4.7-12 10.9l-27.8 313.3v1.1c0 34.9 32.1 63.3 71.5 63.3h243c39.4 0 71.5-28.4 71.5-63.3v-1.1zM241.55 24c38.9 0 70.5 31.6 70.6 70.5h-141.2c.1-38.9 31.7-70.5 70.6-70.5zm121.5 435h-243c-26 0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0 6.6 5.4 12 12 12s12-5.4 12-12v-42.1h141.2v42.1c0 6.6 5.4 12 12 12s12-5.4 12-12v-42.1h47.6l26.8 301.8c-.3 21.4-21.5 38.7-47.5 38.7z" />
+    </Svg>
   )
 }
+
 export default ShoppingCartIcon

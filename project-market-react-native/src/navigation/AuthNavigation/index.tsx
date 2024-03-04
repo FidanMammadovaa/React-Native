@@ -13,7 +13,7 @@ export default function AuthNavigation({ route, navigation }: AuthNavigationProp
 
     const authContext = useAuth()
 
-    console.log(authContext.users);
+    // console.log(authContext.users);
 
     return (
         <Stack.Navigator initialRouteName="Sign Up">

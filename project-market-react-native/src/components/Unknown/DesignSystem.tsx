@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Text, TextStyle, StyleProp } from "react-native";
 
 const Weight: any = {
@@ -21,7 +21,7 @@ const Weight: any = {
 }
 
 interface IBaseText {
-    text: string,
+    text: string | ReactNode
     alignSelf?: string;
     marginTop?: number;
     numberOfLines?: number;

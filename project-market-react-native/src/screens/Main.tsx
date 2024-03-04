@@ -1,28 +1,39 @@
 import { StyleSheet } from "react-native";
 import LogoIcon from "../icons/LogoIcon";
-import BackDrop from "../components/Unknown/BackDrop";
+import BackDrop from "../containers/BackDrop";
 import BoxIcon from "../icons/BoxIcon";
 import { BaseText } from "../components/Unknown/DesignSystem";
 import CustomButton from "../components/Unknown/CustomButton";
 import Layout from "../components/Layouts/Layout";
+import { useAuth } from "../context/AuthContext";
 
-interface MainProps
-{
+interface MainProps {
     route?: any;
     navigation?: any;
 }
 
 
-export default function Main({route, navigation}: MainProps) {
+export default function Main({ route, navigation }: MainProps) {
 
+    const authContext = useAuth()
+    const userToken = authContext.userToken
+    const handleNavigateSignUp = () => {
+        if (userToken) {
+            navigation.navigate('Categories')
+        }
+        else {
+            navigation.navigate('Sign Up')
+        }
+
+    }
     return (
         <Layout backgroundColor='#A259FF'>
             <LogoIcon />
             <BackDrop
-                height={564}
+                height={520}
                 backgroundColor="#F6F5F5"
-                borderRadius={10}
-                >
+                borderRadius={8}
+            >
                 <BoxIcon />
                 <BaseText
                     text="Non-Contact"
@@ -57,7 +68,7 @@ export default function Main({route, navigation}: MainProps) {
                     color="#9586A8"
                     weight="normal" />
                 <CustomButton
-                    onPress={() => {}}
+                    onPress={handleNavigateSignUp}
                     width={374}
                     marginTop={40}
                     height={56}
@@ -72,7 +83,7 @@ export default function Main({route, navigation}: MainProps) {
                         weight="semiBold" />
                 </CustomButton>
                 <CustomButton
-                    onPress={() => {}}
+                    onPress={() => { }}
                     width={64}
                     height={18}
                     marginTop={20}>

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
 
 interface CustomButtonProps {
     width: number;
@@ -9,6 +9,7 @@ interface CustomButtonProps {
     backgroundColor?: string;
     borderRadius?: number;
     onPress: () => void;
+    style?: StyleProp<ViewStyle>
     children: ReactNode;
 }
 
@@ -22,6 +23,7 @@ export default function CustomButton(
         backgroundColor,
         borderRadius,
         onPress,
+        style,
         children
     }: CustomButtonProps
 ) {
@@ -36,13 +38,13 @@ export default function CustomButton(
                 alignSelf: alignSelf ? alignSelf : 'auto',
                 backgroundColor: backgroundColor,
                 borderRadius: borderRadius,
-                justifyContent: 'center',
                 alignItems: 'center',
-                alignContent: 'center'
+                justifyContent: 'center',
+                // alignContent: 'center'
             }
         })
     return (
-        <Pressable onPress={onPress} style={styles.buttonStyle}>
+        <Pressable onPress={onPress} style={[style, styles.buttonStyle]}>
             {children}
         </Pressable>
     )

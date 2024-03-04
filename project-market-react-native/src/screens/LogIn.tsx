@@ -1,12 +1,12 @@
 import { View, Pressable, StyleSheet, Text } from "react-native";
 import Layout from "../components/Layouts/Layout";
-import BackDrop from "../components/Unknown/BackDrop";
+import BackDrop from "../containers/BackDrop";
 import { BaseText } from "../components/Unknown/DesignSystem";
 import CustomTextInput from "../components/Unknown/CustomTextInput";
 import CustomButton from "../components/Unknown/CustomButton";
 import { useState } from "react";
 import { User, useAuth } from "../context/AuthContext";
-import { checkEmailValidation, checkIsEmpty, checkPasswordValidation } from "../validation";
+import { checkEmailValidation, checkPasswordValidation } from "../validation";
 
 interface LogInProps {
     route?: any;
@@ -32,12 +32,18 @@ export default function LogIn({ route, navigation }: LogInProps) {
         setShowPassword((prev) => !prev)
     }
 
+    const clearErrors = () => {
+        setEmailError('')
+        setPasswordError('')
+    }
+
     const clearFields = () => {
         setEmail('')
         setPassword('')
     }
 
     const handleLogin = async () => {
+        clearErrors()
         clearFields()
         let emailValidationResult = checkEmailValidation(email)
         let passwordValidationResult = checkPasswordValidation(password)
@@ -47,10 +53,18 @@ export default function LogIn({ route, navigation }: LogInProps) {
                 email: email,
                 password: password
             }
-            await authContext.signIn(user)
+            await authContext.fetchLoginUser(user)
         }
-        setEmailError('Invalid email format')
-        setPasswordError("Length shouldn't be less than 8 symbols")
+        else {
+
+            if (!emailValidationResult) {
+                setEmailError('Invalid email format');
+            }
+
+            if (!passwordValidationResult) {
+                setPasswordError("Length shouldn't be less than 8 symbols");
+            }
+        }
     }
     return (
         <Layout backgroundColor='#A259FF' justifyContent='center'>
