@@ -16,53 +16,56 @@ interface LogInProps {
 export default function LogIn({ route, navigation }: LogInProps) {
 
     const authContext = useAuth()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const [errors, setErrors] = useState({
+        emailError: '',
+        passwordError: '',
+    })
+
     const [showPassword, setShowPassword] = useState(true)
 
 
     const handleNavToSignUp = () => {
         navigation.navigate('Sign Up')
     }
-    
-    const handleShowPassword = () =>
-    {
+
+    const handleShowPassword = () => {
         setShowPassword((prev) => !prev)
     }
 
-    const clearErrors = () => {
-        setEmailError('')
-        setPasswordError('')
-    }
+    const clearForm = () => {
+        setUserData({ email: '', password: '', });
+        setErrors({ emailError: '', passwordError: '' });
+    };
 
-    const clearFields = () => {
-        setEmail('')
-        setPassword('')
-    }
+    const handleInputChange = (field: string, value: string) => {
+        setUserData((prev) => ({ ...prev, [field]: value }));
+    };
 
     const handleLogin = async () => {
-        clearErrors()
-        clearFields()
-        let emailValidationResult = checkEmailValidation(email)
-        let passwordValidationResult = checkPasswordValidation(password)
+        clearForm()
+        let emailValidationResult = checkEmailValidation(userData.email)
+        let passwordValidationResult = checkPasswordValidation(userData.password)
 
         if (emailValidationResult && passwordValidationResult) {
             let user: User = {
-                email: email,
-                password: password
+                email: userData.email,
+                password: userData.password
             }
             await authContext.fetchLoginUser(user)
         }
         else {
 
             if (!emailValidationResult) {
-                setEmailError('Invalid email format');
+                setErrors((prev) => ({ ...prev, emailError: 'Invalid email format' }));
             }
 
             if (!passwordValidationResult) {
-                setPasswordError("Length shouldn't be less than 8 symbols");
+                setErrors((prev) => ({ ...prev, passwordError: "Length shouldn't be less than 8 symbols" }));
             }
         }
     }
@@ -93,12 +96,12 @@ export default function LogIn({ route, navigation }: LogInProps) {
                         alignSelf="center"
                         width={300}
                         height={50}
-                        value={email}
+                        value={userData.email}
                         placeholder="Email"
                         borderRadius={16}
-                        onChangeText={(value) => setEmail(value)}
+                        onChangeText={(value) => handleInputChange('email', value)}
                         backgroundColor="#ffffff" />
-                    {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+                    {errors.emailError ? <Text style={styles.errorText}>{errors.emailError}</Text> : null}
                     <BaseText
                         marginTop={10}
                         fontSize={18}
@@ -112,13 +115,13 @@ export default function LogIn({ route, navigation }: LogInProps) {
                             width={300}
                             height={50}
                             secureTextEntry={showPassword}
-                            value={password}
+                            value={userData.password}
                             placeholder="Password"
                             borderRadius={16}
-                            onChangeText={(value) => setPassword(value)}
+                            onChangeText={(value) => handleInputChange('password', value)}
                             backgroundColor="#FFFFFF" />
                         <Pressable style={styles.showButton}
-                        onPress={handleShowPassword}>
+                            onPress={handleShowPassword}>
                             <BaseText
                                 text={showPassword ? 'Show' : 'Hide'}
                                 fontSize={14}
@@ -128,7 +131,7 @@ export default function LogIn({ route, navigation }: LogInProps) {
                         </Pressable>
                     </View>
 
-                    {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
+                    {errors.passwordError ? <Text style={styles.errorText}>{errors.passwordError}</Text> : null}
                     <CustomButton
                         onPress={handleLogin}
                         marginTop={10}

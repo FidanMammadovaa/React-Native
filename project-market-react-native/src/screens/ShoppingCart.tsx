@@ -31,8 +31,7 @@ export default function ShoppingCart({ navigation, route }: ShoppingCartProps) {
     );
 
 
-    const navigateToCheckout = () =>
-    {
+    const navigateToCheckout = () => {
         navigation.navigate('Checkout')
     }
 
@@ -51,13 +50,14 @@ export default function ShoppingCart({ navigation, route }: ShoppingCartProps) {
                     />
                     <CustomButton
                         onPress={navigateToCheckout}
-                        width={width}
+                        width={width - 30}
+                        alignSelf="center"
                         height={56}
                         backgroundColor="#0ACF83"
                         borderRadius={8}
                     >
                         <BaseText
-                        text='PLACE ORDER'
+                            text='PLACE ORDER'
                             color="#FFFFFF"
                             weight="semiBold"
                             fontSize={15} />

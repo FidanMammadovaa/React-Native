@@ -15,42 +15,40 @@ interface SignUpProps {
 export default function SignUp({ route, navigation }: SignUpProps) {
 
     const authContext = useAuth()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [repeatPassword, setRepeatPassword] = useState('')
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+        repeat: '',
+    });
 
-    const [emailError, setEmailError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-    const [repeatPasswordError, setRepeatPasswordError] = useState('')
+
+    const [errors, setErrors] = useState({
+        emailError: '',
+        passwordError: '',
+        repeatPasswordError: ''
+    })
 
     const [showPassword, setShowPassword] = useState(true)
     const [showRepeatPassword, setShowRepeatPassword] = useState(true)
 
 
-    const clearFields = () => {
-        setEmail('')
-        setPassword('')
-        setRepeatPassword('')
-    }
-    const clearErrors = () => {
-        setEmailError('')
-        setPasswordError('')
-        setRepeatPassword('')
-    }
+    const clearForm = () => {
+        setUserData({ email: '', password: '', repeat: '' });
+        setErrors({ emailError: '', passwordError: '', repeatPasswordError: '' });
+    };
 
     const handleSignUp = async () => {
-        clearErrors()
-        clearFields()
+        clearForm()
 
-        let emailValidationResult = checkEmailValidation(email);
-        let passwordValidationResult = checkPasswordValidation(password);
-        let repeatPasswordValidationResult = checkPasswordValidation(repeatPassword)
+        let emailValidationResult = checkEmailValidation(userData.email);
+        let passwordValidationResult = checkPasswordValidation(userData.password);
+        let repeatPasswordValidationResult = checkPasswordValidation(userData.repeat)
 
-        if (checkPasswordsMatch(password, repeatPassword)) {
+        if (checkPasswordsMatch(userData.password, userData.repeat)) {
             if (emailValidationResult && passwordValidationResult) {
                 let user: User = {
-                    email: email,
-                    password: password
+                    email: userData.email,
+                    password: userData.password
                 }
                 await authContext.fetchSignUpUser(user)
                 return;
@@ -58,21 +56,22 @@ export default function SignUp({ route, navigation }: SignUpProps) {
             else {
 
                 if (!emailValidationResult) {
-                    setEmailError('Invalid email format');
+                    setErrors((prev) => ({ ...prev, emailError: 'Invalid email format' }));
                 }
 
                 if (!passwordValidationResult) {
-                    setPasswordError("Length shouldn't be less than 8 symbols");
+                    setErrors((prev) => ({ ...prev, passwordError: "Length shouldn't be less than 8 symbols" }));
                 }
 
                 if (!repeatPasswordValidationResult) {
-                    setRepeatPasswordError("Length shouldn't be less than 8 symbols");
+                    setErrors((prev) => ({ ...prev, repeatPasswordError: "Length shouldn't be less than 8 symbols" }));
+
                 }
             }
         }
         else {
-            setPasswordError('Passwords must match');
-            setRepeatPasswordError('Passwords must match');
+            setErrors((prev) => ({ ...prev, passwordError: "Passwords must match" }));
+            setErrors((prev) => ({ ...prev, repeatPasswordError: "Passwords must match" }));
         }
 
 
@@ -89,6 +88,11 @@ export default function SignUp({ route, navigation }: SignUpProps) {
     const handleNavToLogin = () => {
         navigation.navigate('Log In')
     }
+
+    const handleInputChange = (field: string, value: string) => {
+        setUserData((prev) => ({ ...prev, [field]: value }));
+    };
+
     return (
         <Layout backgroundColor='#A259FF' justifyContent='center'>
             <BackDrop
@@ -115,13 +119,13 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                     <CustomTextInput
                         alignSelf="center"
                         width={300}
-                        value={email}
-                        onChangeText={(value) => setEmail(value)}
+                        value={userData.email}
+                        onChangeText={(value) => handleInputChange('email', value)}
                         height={50}
                         placeholder="Email"
                         borderRadius={16}
                         backgroundColor="#ffffff" />
-                    {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+                    {errors.emailError ? <Text style={styles.errorText}>{errors.emailError}</Text> : null}
                     <BaseText
                         marginTop={10}
                         fontSize={18}
@@ -134,8 +138,8 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                             alignSelf="center"
                             width={300}
                             height={50}
-                            value={password}
-                            onChangeText={(value) => setPassword(value)}
+                            value={userData.password}
+                            onChangeText={(value) => handleInputChange('password', value)}
                             placeholder="Password"
                             secureTextEntry={showPassword}
                             borderRadius={16}
@@ -151,7 +155,7 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                             />
                         </Pressable>
                     </View>
-                    {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
+                    {errors.passwordError ? <Text style={styles.errorText}>{errors.passwordError}</Text> : null}
                     <BaseText
                         marginTop={10}
                         fontSize={18}
@@ -159,14 +163,13 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                         text="Repeat"
                         color="#2D0C57"
                     />
-
                     <View>
                         <CustomTextInput
                             alignSelf="center"
                             width={300}
                             height={50}
-                            value={repeatPassword}
-                            onChangeText={(value) => setRepeatPassword(value)}
+                            value={userData.repeat}
+                            onChangeText={(value) => handleInputChange('repeat', value)}
                             placeholder="Repeat password"
                             secureTextEntry={showRepeatPassword}
                             borderRadius={16}
@@ -181,7 +184,7 @@ export default function SignUp({ route, navigation }: SignUpProps) {
                             />
                         </Pressable>
                     </View>
-                    {repeatPasswordError ? <Text style={styles.errorText}>{repeatPasswordError}</Text> : null}
+                    {errors.repeatPasswordError ? <Text style={styles.errorText}>{errors.repeatPasswordError}</Text> : null}
                     <CustomButton
                         onPress={handleSignUp}
                         marginTop={10}

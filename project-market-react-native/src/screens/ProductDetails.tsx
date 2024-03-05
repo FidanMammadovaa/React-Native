@@ -6,18 +6,16 @@ import { BaseText } from "../components/Unknown/DesignSystem";
 import Layout from "../components/Layouts/Layout";
 import CustomButton from "../components/Unknown/CustomButton";
 import FavoriteIcon from "../icons/FavoriteIcon";
-import CustomHeader from "../components/Unknown/CustomHeader";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
-import ShoppingCartIcon from "../icons/ShoppingCartIcon";
 import CheckoutIcon from "../icons/CheckoutIcon";
 
-interface ItemProps {
+interface ProductDetailsProps {
     route: any;
     navigation: any;
 };
 
-export default function Item({ route, navigation }: ItemProps) {
+export default function ProductDetails({ route, navigation }: ProductDetailsProps) {
     const productContext = useProductContext()
     const { productId } = route.params
     const [product, setProduct] = useState({} as Product)

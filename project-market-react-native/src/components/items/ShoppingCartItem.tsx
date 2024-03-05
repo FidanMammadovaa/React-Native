@@ -4,7 +4,7 @@ import { Product, useProductContext } from "../../context/ProductContext";
 import { Image, StyleSheet, View } from "react-native";
 import BackDrop from "../../containers/BackDrop";
 import { BaseText } from "../Unknown/DesignSystem";
-import Item from "../../screens/Item";
+import Item from "../../screens/ProductDetails";
 
 interface ShoppingCartItemProps {
     cartItem: CartItem;

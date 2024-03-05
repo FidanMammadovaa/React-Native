@@ -21,7 +21,7 @@ export default function AuthNavigation({ route, navigation }: AuthNavigationProp
                 <>
                     <Stack.Screen
                         options={{ headerShown: false }}
-                        name="Log In">
+                        name="Sign Out">
                         {props => <SignOut {...props} />}
                     </Stack.Screen>
                 </>

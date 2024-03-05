@@ -19,7 +19,7 @@ export default function Main({ route, navigation }: MainProps) {
     const userToken = authContext.userToken
     const handleNavigateSignUp = () => {
         if (userToken) {
-            navigation.navigate('Categories')
+            navigation.navigate('MarketNavigation', 'Categories')
         }
         else {
             navigation.navigate('Sign Up')

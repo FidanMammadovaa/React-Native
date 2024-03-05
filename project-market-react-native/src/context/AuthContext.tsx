@@ -1,6 +1,5 @@
 import React, { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { Alert } from "react-native";
-import { getToken, removeToken, setToken } from "../storageData";
+import { removeToken, getToken, setToken } from "../storageData";
 
 export interface User {
     id?: number;
