@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product, useProductContext } from "../context/ProductContext";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import BackDrop from "../containers/BackDrop";
 import { BaseText } from "../components/Unknown/DesignSystem";
 import Layout from "../components/Layouts/Layout";
@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
     {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        gap: 150
+        gap: 100
     },
 })

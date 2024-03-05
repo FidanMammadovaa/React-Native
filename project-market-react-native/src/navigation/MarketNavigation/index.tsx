@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import CustomHeader from "../../components/Unknown/CustomHeader"
 import Categories from "../../screens/Categories"
 import Products from "../../screens/Products"
-import Item from "../../screens/ProductDetails"
+import ProductDetails from "../../screens/ProductDetails"
 
 
 
@@ -31,8 +31,8 @@ export default function MarketNavigation({ route, navigation }: MarketNavigation
                 component={Products} />
             <Stack.Screen 
                 options={{headerShown: false}}
-                name="Item"
-                component={Item}/>
+                name="ProductDetails"
+                component={ProductDetails}/>
         </Stack.Navigator>
     )
 }

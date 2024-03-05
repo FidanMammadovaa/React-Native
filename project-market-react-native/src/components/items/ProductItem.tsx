@@ -28,7 +28,7 @@ export default function ProductItem({ style, navigation, productItem }: ProductI
     };
 
     const navigateToProductItem = () => {
-        navigation.navigate("Item",
+        navigation.navigate("ProductDetails",
         {
             productId: productItem.id
         })
