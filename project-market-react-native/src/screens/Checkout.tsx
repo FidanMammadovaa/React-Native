@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Switch, Text, View } from "react-native";
 import { BaseText } from "../components/Unknown/DesignSystem";
 import CustomButton from "../components/Unknown/CustomButton";
 import CreditCardIcon from "../icons/CreditCardIcon";
@@ -15,7 +15,11 @@ interface CheckoutProps {
 
 export default function Checkout({ navigation, route }: CheckoutProps) {
 
-
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => 
+  {
+    setIsEnabled((prev) => !prev);
+  }
   return (
     <View style={styles.containerStyle}>
       <View style={styles.rowSpaceContainer}>
@@ -134,6 +138,12 @@ Latvia`}
           fontSize={22}
           weight="semiBold700"
           color="#2D0C57" />
+          <Switch
+            trackColor={{false: '#9586A8', true: '#E2CBFF'}}
+            thumbColor={'#ffffff'}
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            />
       </View>
     </View>
   );

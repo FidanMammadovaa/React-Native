@@ -10,9 +10,7 @@ export interface User {
 
 type AuthContextType = {
     currentUserId: number;
-    users: User[];
     userToken: string | null;
-    fetchUsers: () => Promise<void>;
     fetchSignUpUser: (user: User) => Promise<void>;
     fetchLoginUser: (user: User) => Promise<void>;
     signOut: () => Promise<void>
@@ -28,27 +26,7 @@ export const useAuth = () => {
 
 const baseUrl = 'https://localhost:7219/User';
 
-const getAllUsers = async () => {
-    try {
-        const url = `${baseUrl}/All`;
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error occurred while fetching data: ", error);
-        throw error;
-    }
-};
 
 const signUpUser = async (user: User) => {
     try {
@@ -100,33 +78,30 @@ const loginUser = async (user: User) => {
 
 export const AuthContext = createContext<AuthContextType>({
     currentUserId: -1,
-    users: [],
     userToken: null,
-    fetchUsers: async () => { },
     fetchSignUpUser: async (user: User) => { },
     fetchLoginUser: async (user: User) => { },
     signOut: async () => { }
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-    const [users, setUsers] = useState<User[]>([]);
     const [userToken, setUserToken] = useState<string | null>(null);
     const [currentUserId, setCurrentUserId] = useState<number>(-1);
 
     useEffect(() => {
-        fetchUsers();
+        // fetchUsers();
         console.log(currentUserId);
 
     }, [currentUserId]);
 
-    const fetchUsers = async () => {
-        try {
-            const fetchedUsers = await getAllUsers();
-            setUsers(fetchedUsers);
-        } catch (error) {
-            console.error("Error fetching users:", error);
-        }
-    };
+    // const fetchUsers = async () => {
+    //     try {
+    //         const fetchedUsers = await getAllUsers();
+    //         setUsers(fetchedUsers);
+    //     } catch (error) {
+    //         console.error("Error fetching users:", error);
+    //     }
+    // };
 
     const fetchSignUpUser = async (user: User) => {
         try {
@@ -189,7 +164,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
 
 
-    const contextValue: AuthContextType = { fetchLoginUser, signOut, fetchSignUpUser, fetchUsers, currentUserId, users, userToken };
+    const contextValue: AuthContextType = { fetchLoginUser, signOut, fetchSignUpUser, currentUserId, userToken };
     return (
         <AuthContext.Provider value={contextValue}>
             {children}
