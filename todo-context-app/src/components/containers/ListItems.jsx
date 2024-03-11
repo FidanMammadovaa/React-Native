@@ -22,8 +22,8 @@ export default function ListItems() {
     const incompleteTodos = todoContext.todos.filter(todo => !todo.completed);
 
     return (
-        <View style={styles.container} >
-            <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+            <View contentContainerStyle={styles.scrollViewContent} >
                 <View style={styles.incompleteTodosContainer}>
                     <View>
                         {incompleteTodos.map((todo) => (
@@ -48,8 +48,8 @@ export default function ListItems() {
 
                 }
 
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
 
     );
 }

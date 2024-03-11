@@ -68,8 +68,8 @@ export default function NewTask({ route, navigation }) {
     return (
         <Layout>
             <Header onPress={() => handleClosePress()} svgIcon={'CloseIcon'} route={route} height={96} />
-            <KeyboardAvoidingView style={styles.container}>
-                <View style={styles.taskTitleSection}>
+            <KeyboardAvoidingView  style={styles.container}>
+                <View>
                     <BaseText
                         text='Task Title'
                         weight="semiBold"

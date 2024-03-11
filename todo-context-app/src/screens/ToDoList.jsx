@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import Header from "../components/Header";
 import ListItems from "../components/containers/ListItems";
 import CustomButton from "../components/CustomButton";
@@ -22,6 +22,7 @@ export default function ToDoList({ route, navigation }) {
     return (
         <Layout>
             <Header onPress={handleGoBackPress} svgIcon={'ArrowLeftIcon'} route={route} height={222} />
+
             <ListItems />
             <CustomButton onPress={handleSaveButtonPress} buttonText={'Add New Task'} />
         </Layout>
